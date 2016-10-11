@@ -1,3 +1,8 @@
+# modifications
+
+- IPFS Daemon Packaging
+- OrbitDB backed Redux
+
 # electron-react-boilerplate
 
 [![NPM version][npm-image]][npm-url]

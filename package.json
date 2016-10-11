@@ -109,7 +109,11 @@
   "dependencies": {
     "css-modules-require-hook": "^4.0.5",
     "electron-debug": "^1.0.1",
+    "electron-json-storage": "^2.0.1",
     "font-awesome": "^4.6.3",
+    "ipfs-api": "^9.0.0",
+    "ipfs-daemon": "0.0.3",
+    "orbit-db": "^0.13.0",
     "postcss": "^5.2.4",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
@@ -122,6 +126,6 @@
   },
   "devEngines": {
     "node": "4.x || 5.x || 6.x",
-    "npm": "3.x"
+    "npm": "3.x || 4.x"
   }
 }

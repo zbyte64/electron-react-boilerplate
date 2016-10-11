@@ -15,14 +15,18 @@
     "import/no-extraneous-dependencies": "off",
     "no-use-before-define": "off",
     "promise/param-names": 2,
-    "promise/always-return": 2,
-    "promise/always-catch": 2, // deprecated
-    "promise/catch-or-return": 2,
+    "promise/always-return": "off",
+    "promise/always-catch": "off", // deprecated
+    "promise/catch-or-return": "off",
     "promise/no-native": 0,
     "react/jsx-no-bind": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
     "react/prefer-stateless-function": "off",
-    "flowtype-errors/show-errors": 2
+    "flowtype-errors/show-errors": 2,
+    "no-unused-vars": 1,
+    "quotes": 1,
+    "semi": 1,
+    "no-console": 1
   },
   "plugins": [
     "flowtype-errors",
