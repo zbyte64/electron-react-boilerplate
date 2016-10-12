@@ -4,6 +4,7 @@ import { hashHistory } from 'react-router';
 import { routerMiddleware, push } from 'react-router-redux';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers';
+import orbitSync from '../ipfs/middleware';
 
 import * as counterActions from '../actions/counter';
 
@@ -19,14 +20,16 @@ const logger = createLogger({
 
 const router = routerMiddleware(hashHistory);
 
-const enhancer = compose(
-  applyMiddleware(thunk, router, logger),
-  window.devToolsExtension ?
-    window.devToolsExtension({ actionCreators }) :
-    noop => noop
-);
 
-export default function configureStore(initialState: Object) {
+export default function configureStore(db, initialState: Object) {
+  const enhancer = compose(
+    applyMiddleware(thunk, router, orbitSync(db), logger),
+    window.devToolsExtension ?
+      window.devToolsExtension({ actionCreators }) :
+      noop => noop
+  );
+
+
   const store = createStore(rootReducer, initialState, enhancer);
 
   if (window.devToolsExtension) {

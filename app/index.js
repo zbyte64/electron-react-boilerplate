@@ -6,15 +6,19 @@ import { Router, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import routes from './routes';
 import configureStore from './store/configureStore';
-import { something } from './ipfs';
+import getCounterStore from './ipfs/db';
 import './app.global.css';
 
-const store = configureStore();
-const history = syncHistoryWithStore(hashHistory, store);
 
-render(
-  <Provider store={store}>
-    <Router history={history} routes={routes} />
-  </Provider>,
-  document.getElementById('root')
-);
+getCounterStore().then(db => {
+  console.log("db value", db.value)
+  const store = configureStore(db, { counter: db.value || 0 });
+  const history = syncHistoryWithStore(hashHistory, store);
+
+  render(
+    <Provider store={store}>
+      <Router history={history} routes={routes} />
+    </Provider>,
+    document.getElementById('root')
+  );
+});
