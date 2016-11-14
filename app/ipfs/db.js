@@ -45,11 +45,12 @@ export function getIpfsClient() {
 }
 
 export default function getCounterStore(namespace: string = 'counter') {
-  return getIpfsClient().then(ipfs => {
-    const orbitdb = new OrbitDB(ipfs);
-    const db = orbitdb.counter(namespace);
-    // db.events.on('data', (dbname, event) => console.log(dbname, event))
-    return db;
+  return new Promise((resolve, reject) => {
+    getIpfsClient().then(ipfs => {
+      const orbitdb = new OrbitDB(ipfs, new Date().getTime()); // second arg is a unique (user) id
+      const db = orbitdb.counter(namespace);
+      db.events.on('ready', () => resolve(db))
+    }).catch(e => reject(e));
   });
 }
 
